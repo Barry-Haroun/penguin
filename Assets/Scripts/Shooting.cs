@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             RaycastHit hit;
-            bool result = Physics.Raycast(transform.position, transform.forward, out hit, 5);
+            bool result = Physics.Raycast(transform.position, transform.forward, out hit, 50);
 
             if (result)
             {

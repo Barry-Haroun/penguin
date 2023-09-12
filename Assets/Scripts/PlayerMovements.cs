@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovements : MonoBehaviour
 {
@@ -21,8 +22,11 @@ public class PlayerMovements : MonoBehaviour
             Vector3 direction = transform.forward * Input.GetAxis("Vertical");
             transform.Translate(direction * speed * Time.deltaTime, Space.World);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && !IsTouchingFloor())
+        float horizontalMove = Input.GetAxis("Horizontal");
+        float verticalMove = Input.GetAxis("Vertical");
+        Vector3 moveDirection = new Vector3(horizontalMove, 0, verticalMove);
+        moveDirection.Normalize();
+        if (Input.GetKeyDown(KeyCode.Space) && IsTouchingFloor())
         {
             penguinBody.AddForce(Vector3.up * jumpForce);
         }
